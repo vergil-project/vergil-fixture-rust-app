@@ -8,6 +8,7 @@ vergil-fixture-rust-app <COMMAND>
 |---|---|
 | [`greet NAME`](#greet) | a greeting for `NAME` |
 | [`sum [NUMBERS]...`](#sum) | the sum of the integers |
+| [`max NUMBERS...`](#max) | the largest of the integers |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -54,6 +55,25 @@ A sum outside the 64-bit signed range is an error:
 ```console
 $ vergil-fixture-rust-app sum 9223372036854775807 1
 error: the sum overflows a 64-bit signed integer
+```
+
+## max
+
+Prints the largest of its arguments, which are 64-bit signed integers.
+Negative numbers need no `--`.
+
+```console
+$ vergil-fixture-rust-app max 1 3 2
+3
+$ vergil-fixture-rust-app max -4 -2
+-2
+```
+
+With no arguments there is no largest number, so it is an error:
+
+```console
+$ vergil-fixture-rust-app max
+error: max needs at least one number
 ```
 
 ## info
