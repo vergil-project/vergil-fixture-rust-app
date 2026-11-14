@@ -1,0 +1,67 @@
+//! A Vergil test fixture: a small command-line application with no users.
+//!
+//! It exists so that Vergil's Rust support (validation, CI, the dependency
+//! audit, the docs site and the release) has a real application to run
+//! against. Each subcommand lives in its own module under [`commands`]: adding
+//! one is a new module, a [`Command`] variant and a match arm in [`run`].
+
+pub mod cli;
+pub mod commands;
+
+use std::io::Write;
+
+pub use cli::{Cli, Command};
+
+/// Runs `command`, writing its output to `out`.
+///
+/// # Errors
+///
+/// Returns the subcommand's error, or an error writing to `out`.
+pub fn run(command: Command, out: &mut impl Write) -> anyhow::Result<()> {
+    match command {
+        Command::Greet(args) => commands::greet::run(&args, out),
+        Command::Sum(args) => commands::sum::run(&args, out),
+        Command::Max(args) => commands::max::run(&args, out),
+        Command::Info => commands::info::run(out),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn output(command: Command) -> String {
+        let mut out = Vec::new();
+        run(command, &mut out).expect("the command succeeds");
+        String::from_utf8(out).expect("the output is UTF-8")
+    }
+
+    #[test]
+    fn run_dispatches_greet() {
+        let args = commands::greet::Args {
+            name: "Ada".to_owned(),
+        };
+        assert_eq!(output(Command::Greet(args)), "Hello, Ada\n");
+    }
+
+    #[test]
+    fn run_dispatches_sum() {
+        let args = commands::sum::Args {
+            numbers: vec![2, 3],
+        };
+        assert_eq!(output(Command::Sum(args)), "5\n");
+    }
+
+    #[test]
+    fn run_dispatches_max() {
+        let args = commands::max::Args {
+            numbers: vec![2, 3],
+        };
+        assert_eq!(output(Command::Max(args)), "3\n");
+    }
+
+    #[test]
+    fn run_dispatches_info() {
+        assert!(output(Command::Info).starts_with("{\"name\":\"vergil-fixture-rust-app\""));
+    }
+}
