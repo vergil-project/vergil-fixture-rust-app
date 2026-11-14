@@ -2,7 +2,7 @@
 
 use clap::{Parser, Subcommand};
 
-use crate::commands::{greet, sum};
+use crate::commands::{greet, max, sum};
 
 /// The parsed command line.
 #[derive(Debug, Parser)]
@@ -20,6 +20,8 @@ pub enum Command {
     Greet(greet::Args),
     /// Print the sum of NUMBERS (0 when none are given).
     Sum(sum::Args),
+    /// Print the largest of NUMBERS (an error when none are given).
+    Max(max::Args),
     /// Print the program's name and version as JSON.
     Info,
 }
@@ -52,6 +54,12 @@ mod tests {
     fn parses_sum_with_negative_numbers() {
         let command = parse(&["sum", "-4", "2"]);
         assert!(matches!(command, Command::Sum(args) if args.numbers == [-4, 2]));
+    }
+
+    #[test]
+    fn parses_max_with_negative_numbers() {
+        let command = parse(&["max", "-4", "2"]);
+        assert!(matches!(command, Command::Max(args) if args.numbers == [-4, 2]));
     }
 
     #[test]

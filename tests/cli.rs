@@ -80,6 +80,22 @@ fn sum_rejects_a_word() {
 }
 
 #[test]
+fn max_prints_the_largest_number() {
+    let output = run(&["max", "-4", "7", "2"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "7\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn max_of_no_numbers_is_an_error() {
+    let output = run(&["max"]);
+    assert_eq!(output.status.code(), Some(1));
+    assert_eq!(stdout(&output), "");
+    assert_eq!(stderr(&output), "error: max needs at least one number\n");
+}
+
+#[test]
 fn info_prints_the_name_and_version_as_json() {
     let output = run(&["info"]);
     assert_eq!(output.status.code(), Some(0));

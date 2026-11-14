@@ -23,12 +23,13 @@ small increment to the program.
 
 ## Overview
 
-The program, `vergil-fixture-rust-app`, has three subcommands:
+The program, `vergil-fixture-rust-app`, has four subcommands:
 
 | Command | Prints |
 |---|---|
 | `greet NAME` | `Hello, NAME` |
 | `sum [NUMBERS]...` | the sum of the integers, `0` for none |
+| `max NUMBERS...` | the largest of the integers, an error for none |
 | `info` | the program's name and version as JSON |
 
 It exercises:
