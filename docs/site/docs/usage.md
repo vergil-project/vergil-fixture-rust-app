@@ -78,9 +78,10 @@ error: max needs at least one number
 
 ## info
 
-Prints one line of compact JSON with the program's name and version:
+Prints one line of compact JSON with the program's name and version, the
+crate's current version from `Cargo.toml`:
 
 ```console
 $ vergil-fixture-rust-app info
-{"name":"vergil-fixture-rust-app","version":"0.1.0"}
+{"name":"vergil-fixture-rust-app","version":"<VERSION>"}
 ```
