@@ -686,9 +686,10 @@ Negative numbers need no <code>--</code>.</p>
 <span class="go">error: max needs at least one number</span>
 </code></pre></div>
 <h2 id="info">info<a class="headerlink" href="#info" title="Permanent link">&para;</a></h2>
-<p>Prints one line of compact JSON with the program's name and version:</p>
+<p>Prints one line of compact JSON with the program's name and version, the
+crate's current version from <code>Cargo.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>info
-<span class="go">{"name":"vergil-fixture-rust-app","version":"0.1.0"}</span>
+<span class="go">{"name":"vergil-fixture-rust-app","version":"&lt;VERSION&gt;"}</span>
 </code></pre></div>
 
 
