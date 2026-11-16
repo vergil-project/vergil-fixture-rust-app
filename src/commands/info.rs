@@ -27,6 +27,7 @@ pub fn run(out: &mut impl Write) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::commands::testing::capture;
 
     #[test]
     fn names_the_program_and_its_version() {
@@ -38,12 +39,23 @@ mod tests {
 
     #[test]
     fn run_writes_compact_json_on_one_line() {
-        let mut out = Vec::new();
-        run(&mut out).unwrap();
+        let (result, out) = capture(256, |out| run(out));
+        result.unwrap();
         let expected = format!(
             "{{\"name\":\"vergil-fixture-rust-app\",\"version\":\"{}\"}}\n",
             env!("CARGO_PKG_VERSION")
         );
         assert_eq!(String::from_utf8(out).unwrap(), expected);
+    }
+
+    #[test]
+    fn run_reports_a_write_error() {
+        let (result, out) = capture(0, |out| run(out));
+        let kind = result
+            .unwrap_err()
+            .downcast_ref::<std::io::Error>()
+            .map(std::io::Error::kind);
+        assert_eq!(kind, Some(std::io::ErrorKind::WriteZero));
+        assert!(out.is_empty());
     }
 }

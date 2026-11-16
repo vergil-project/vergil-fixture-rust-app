@@ -64,6 +64,7 @@ mod tests {
 
     #[test]
     fn parses_info() {
-        assert!(matches!(parse(&["info"]), Command::Info));
+        let command = parse(&["info"]);
+        assert_eq!(format!("{command:?}"), "Info");
     }
 }
