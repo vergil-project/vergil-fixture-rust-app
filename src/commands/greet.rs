@@ -76,7 +76,10 @@ mod tests {
             name: String::new(),
         };
         let (result, out) = capture(64, |out| run(&args, out));
-        assert_eq!(result.unwrap_err().to_string(), "the name must not be blank");
+        assert_eq!(
+            result.unwrap_err().to_string(),
+            "the name must not be blank"
+        );
         assert!(out.is_empty());
     }
 
