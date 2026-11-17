@@ -544,8 +544,9 @@ drives it through Vergil's full cycle, from change to release.</p>
 <h2 id="what-it-exercises">What it exercises<a class="headerlink" href="#what-it-exercises" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>vrg-validate</code>'s Rust checks: <code>cargo fmt</code>, <code>cargo clippy</code>, <code>cargo check</code>,
-  tests at 100% line coverage with <code>cargo llvm-cov</code>, and <code>cargo deny</code> against
-  the fleet's packaged license policy.</li>
+  tests at 100% line coverage with <code>cargo llvm-cov</code>, doctests with
+  <code>cargo test --doc</code>, and <code>cargo deny</code> against the fleet's packaged license,
+  advisory and source policy.</li>
 <li>Three real runtime dependencies, <code>clap</code>, <code>anyhow</code> and <code>serde_json</code>, for the
   audit and the dependency tooling to work on.</li>
 <li>The fleet's CI and CD workflows, this site and the release.</li>
