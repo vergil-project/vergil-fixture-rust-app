@@ -482,6 +482,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        min
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -571,6 +582,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        min
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -620,6 +642,10 @@
 <tr>
 <td><a href="#max"><code>max NUMBERS...</code></a></td>
 <td>the largest of the integers</td>
+</tr>
+<tr>
+<td><a href="#min"><code>min NUMBERS...</code></a></td>
+<td>the smallest of the integers</td>
 </tr>
 <tr>
 <td><a href="#info"><code>info</code></a></td>
@@ -684,6 +710,18 @@ Negative numbers need no <code>--</code>.</p>
 <p>With no arguments there is no largest number, so it is an error:</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>max
 <span class="go">error: max needs at least one number</span>
+</code></pre></div>
+<h2 id="min">min<a class="headerlink" href="#min" title="Permanent link">&para;</a></h2>
+<p>Prints the smallest of its arguments, which are 64-bit signed integers.
+Negative numbers need no <code>--</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>min<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span>
+<span class="go">1</span>
+<span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>min<span class="w"> </span>-4<span class="w"> </span>-2
+<span class="go">-4</span>
+</code></pre></div>
+<p>With no arguments there is no smallest number, so it is an error:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>min
+<span class="go">error: min needs at least one number</span>
 </code></pre></div>
 <h2 id="info">info<a class="headerlink" href="#info" title="Permanent link">&para;</a></h2>
 <p>Prints one line of compact JSON with the program's name and version, the
