@@ -36,9 +36,10 @@ The program, `vergil-fixture-rust-app`, has five subcommands:
 It exercises:
 
 - `vrg-validate`'s Rust checks: `cargo fmt`, `cargo clippy`, `cargo check`,
-  tests at 100% line coverage with `cargo llvm-cov`, doctests with
-  `cargo test --doc`, and `cargo deny` against the fleet's packaged license,
-  advisory and source policy;
+  tests at 100% line and region coverage with `cargo llvm-cov`, doctests
+  with `cargo test --doc`, `cargo deny` against the fleet's packaged
+  license, advisory and source policy, and the release build
+  (`cargo build --release --locked --workspace`);
 - three real runtime dependencies, `clap`, `anyhow` and `serde_json`, for the
   audit and the dependency tooling to work on;
 - the fleet's CI and CD workflows, the docs site and the tagged release.
