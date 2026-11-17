@@ -47,6 +47,7 @@ pub fn run(args: &Args, out: &mut impl Write) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::commands::testing::capture;
 
     const NONE: &str = "max needs at least one number";
 
@@ -78,19 +79,33 @@ mod tests {
 
     #[test]
     fn run_writes_one_line() {
-        let mut out = Vec::new();
         let args = Args {
             numbers: vec![40, 42, 2],
         };
-        run(&args, &mut out).unwrap();
+        let (result, out) = capture(64, |out| run(&args, out));
+        result.unwrap();
         assert_eq!(out, b"42\n");
     }
 
     #[test]
     fn run_writes_nothing_on_error() {
-        let mut out = Vec::new();
         let args = Args { numbers: vec![] };
-        assert!(run(&args, &mut out).is_err());
+        let (result, out) = capture(64, |out| run(&args, out));
+        assert_eq!(result.unwrap_err().to_string(), NONE);
+        assert!(out.is_empty());
+    }
+
+    #[test]
+    fn run_reports_a_write_error() {
+        let args = Args {
+            numbers: vec![40, 42, 2],
+        };
+        let (result, out) = capture(0, |out| run(&args, out));
+        let kind = result
+            .unwrap_err()
+            .downcast_ref::<std::io::Error>()
+            .map(std::io::Error::kind);
+        assert_eq!(kind, Some(std::io::ErrorKind::WriteZero));
         assert!(out.is_empty());
     }
 }

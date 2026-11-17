@@ -37,6 +37,7 @@ pub fn run(args: &Args, out: &mut impl Write) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::commands::testing::capture;
 
     const OVERFLOW: &str = "the sum overflows a 64-bit signed integer";
 
@@ -73,11 +74,35 @@ mod tests {
 
     #[test]
     fn run_writes_one_line() {
-        let mut out = Vec::new();
         let args = Args {
             numbers: vec![40, 2],
         };
-        run(&args, &mut out).unwrap();
+        let (result, out) = capture(64, |out| run(&args, out));
+        result.unwrap();
         assert_eq!(out, b"42\n");
+    }
+
+    #[test]
+    fn run_writes_nothing_on_error() {
+        let args = Args {
+            numbers: vec![i64::MAX, 1],
+        };
+        let (result, out) = capture(64, |out| run(&args, out));
+        assert_eq!(result.unwrap_err().to_string(), OVERFLOW);
+        assert!(out.is_empty());
+    }
+
+    #[test]
+    fn run_reports_a_write_error() {
+        let args = Args {
+            numbers: vec![40, 2],
+        };
+        let (result, out) = capture(0, |out| run(&args, out));
+        let kind = result
+            .unwrap_err()
+            .downcast_ref::<std::io::Error>()
+            .map(std::io::Error::kind);
+        assert_eq!(kind, Some(std::io::ErrorKind::WriteZero));
+        assert!(out.is_empty());
     }
 }

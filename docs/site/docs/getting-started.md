@@ -44,5 +44,6 @@ restructuring:
 2. Declare the module in `src/commands.rs`.
 3. Add a variant to `Command` in `src/cli.rs`, and its arm to the `match` in
    `run` in `src/lib.rs`.
-4. Add its end-to-end tests to `tests/cli.rs` and its entry to the
-   [Usage](usage.md) page.
+4. Add its end-to-end tests to `tests/cli.rs`, its entry to the
+   [Usage](usage.md) page, and its row to the subcommand table in the
+   repository's `README.md`.

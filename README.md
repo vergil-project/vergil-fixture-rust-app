@@ -18,25 +18,27 @@ describes in its
 
 ## Status
 
-A test fixture. It changes only through fixture runs, each of which adds one
-small increment to the program.
+A test fixture. Its program changes only through fixture runs, each of which
+adds one small increment.
 
 ## Overview
 
-The program, `vergil-fixture-rust-app`, has four subcommands:
+The program, `vergil-fixture-rust-app`, has five subcommands:
 
 | Command | Prints |
 |---|---|
 | `greet NAME` | `Hello, NAME` |
 | `sum [NUMBERS]...` | the sum of the integers, `0` for none |
 | `max NUMBERS...` | the largest of the integers, an error for none |
+| `min NUMBERS...` | the smallest of the integers, an error for none |
 | `info` | the program's name and version as JSON |
 
 It exercises:
 
 - `vrg-validate`'s Rust checks: `cargo fmt`, `cargo clippy`, `cargo check`,
-  tests at 100% line coverage with `cargo llvm-cov`, and `cargo deny` against
-  the fleet's packaged license policy;
+  tests at 100% line coverage with `cargo llvm-cov`, doctests with
+  `cargo test --doc`, and `cargo deny` against the fleet's packaged license,
+  advisory and source policy;
 - three real runtime dependencies, `clap`, `anyhow` and `serde_json`, for the
   audit and the dependency tooling to work on;
 - the fleet's CI and CD workflows, the docs site and the tagged release.
