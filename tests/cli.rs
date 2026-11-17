@@ -96,6 +96,22 @@ fn max_of_no_numbers_is_an_error() {
 }
 
 #[test]
+fn min_prints_the_smallest_number() {
+    let output = run(&["min", "-4", "7", "2"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "-4\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn min_of_no_numbers_is_an_error() {
+    let output = run(&["min"]);
+    assert_eq!(output.status.code(), Some(1));
+    assert_eq!(stdout(&output), "");
+    assert_eq!(stderr(&output), "error: min needs at least one number\n");
+}
+
+#[test]
 fn info_prints_the_name_and_version_as_json() {
     let output = run(&["info"]);
     assert_eq!(output.status.code(), Some(0));

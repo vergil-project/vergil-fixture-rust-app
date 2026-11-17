@@ -2,7 +2,7 @@
 
 use clap::{Parser, Subcommand};
 
-use crate::commands::{greet, max, sum};
+use crate::commands::{greet, max, min, sum};
 
 /// The parsed command line.
 #[derive(Debug, Parser)]
@@ -22,6 +22,8 @@ pub enum Command {
     Sum(sum::Args),
     /// Print the largest of NUMBERS (an error when none are given).
     Max(max::Args),
+    /// Print the smallest of NUMBERS (an error when none are given).
+    Min(min::Args),
     /// Print the program's name and version as JSON.
     Info,
 }
@@ -60,6 +62,12 @@ mod tests {
     fn parses_max_with_negative_numbers() {
         let command = parse(&["max", "-4", "2"]);
         assert!(matches!(command, Command::Max(args) if args.numbers == [-4, 2]));
+    }
+
+    #[test]
+    fn parses_min_with_negative_numbers() {
+        let command = parse(&["min", "-4", "2"]);
+        assert!(matches!(command, Command::Min(args) if args.numbers == [-4, 2]));
     }
 
     #[test]
