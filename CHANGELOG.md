@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] - 2026-11-18
+
+### Chores
+
+- cargo update
+
+### Documentation
+
+- describe the Rust gate as lines and regions, with the release build (#30)
+
+### Features
+
+- add the product subcommand (#34)
+
 ## [0.1.1] - 2026-11-17
 
 ### CI
