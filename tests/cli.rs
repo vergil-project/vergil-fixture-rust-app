@@ -112,6 +112,32 @@ fn min_of_no_numbers_is_an_error() {
 }
 
 #[test]
+fn product_multiplies_its_numbers() {
+    let output = run(&["product", "-4", "3", "2"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "-24\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn product_of_no_numbers_is_one() {
+    let output = run(&["product"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "1\n");
+}
+
+#[test]
+fn product_reports_an_overflow() {
+    let output = run(&["product", "9223372036854775807", "2"]);
+    assert_eq!(output.status.code(), Some(1));
+    assert_eq!(stdout(&output), "");
+    assert_eq!(
+        stderr(&output),
+        "error: the product overflows a 64-bit signed integer\n"
+    );
+}
+
+#[test]
 fn info_prints_the_name_and_version_as_json() {
     let output = run(&["info"]);
     assert_eq!(output.status.code(), Some(0));

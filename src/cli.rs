@@ -2,7 +2,7 @@
 
 use clap::{Parser, Subcommand};
 
-use crate::commands::{greet, max, min, sum};
+use crate::commands::{greet, max, min, product, sum};
 
 /// The parsed command line.
 #[derive(Debug, Parser)]
@@ -24,6 +24,8 @@ pub enum Command {
     Max(max::Args),
     /// Print the smallest of NUMBERS (an error when none are given).
     Min(min::Args),
+    /// Print the product of NUMBERS (1 when none are given).
+    Product(product::Args),
     /// Print the program's name and version as JSON.
     Info,
 }
@@ -68,6 +70,12 @@ mod tests {
     fn parses_min_with_negative_numbers() {
         let command = parse(&["min", "-4", "2"]);
         assert!(matches!(command, Command::Min(args) if args.numbers == [-4, 2]));
+    }
+
+    #[test]
+    fn parses_product_with_negative_numbers() {
+        let command = parse(&["product", "-4", "2"]);
+        assert!(matches!(command, Command::Product(args) if args.numbers == [-4, 2]));
     }
 
     #[test]
