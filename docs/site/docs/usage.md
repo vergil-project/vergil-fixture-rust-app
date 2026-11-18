@@ -10,6 +10,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`sum [NUMBERS]...`](#sum) | the sum of the integers |
 | [`max NUMBERS...`](#max) | the largest of the integers |
 | [`min NUMBERS...`](#min) | the smallest of the integers |
+| [`product [NUMBERS]...`](#product) | the product of the integers |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -94,6 +95,25 @@ With no arguments there is no smallest number, so it is an error:
 ```console
 $ vergil-fixture-rust-app min
 error: min needs at least one number
+```
+
+## product
+
+Prints the product of its arguments, which are 64-bit signed integers.
+Negative numbers need no `--`. With no arguments, the product is `1`.
+
+```console
+$ vergil-fixture-rust-app product 2 3 4
+24
+$ vergil-fixture-rust-app product -4 2
+-8
+```
+
+A product outside the 64-bit signed range is an error:
+
+```console
+$ vergil-fixture-rust-app product 9223372036854775807 2
+error: the product overflows a 64-bit signed integer
 ```
 
 ## info

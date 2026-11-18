@@ -14,9 +14,10 @@ Why the fixture exists, and how a fixture run works, is set out in the
 ## What it exercises
 
 - `vrg-validate`'s Rust checks: `cargo fmt`, `cargo clippy`, `cargo check`,
-  tests at 100% line coverage with `cargo llvm-cov`, doctests with
-  `cargo test --doc`, and `cargo deny` against the fleet's packaged license,
-  advisory and source policy.
+  tests at 100% line and region coverage with `cargo llvm-cov`, doctests
+  with `cargo test --doc`, `cargo deny` against the fleet's packaged
+  license, advisory and source policy, and the release build
+  (`cargo build --release --locked --workspace`).
 - Three real runtime dependencies, `clap`, `anyhow` and `serde_json`, for the
   audit and the dependency tooling to work on.
 - The fleet's CI and CD workflows, this site and the release.

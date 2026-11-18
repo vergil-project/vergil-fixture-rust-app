@@ -23,6 +23,7 @@ pub fn run(command: Command, out: &mut impl Write) -> anyhow::Result<()> {
         Command::Sum(args) => commands::sum::run(&args, out),
         Command::Max(args) => commands::max::run(&args, out),
         Command::Min(args) => commands::min::run(&args, out),
+        Command::Product(args) => commands::product::run(&args, out),
         Command::Info => commands::info::run(out),
     }
 }
@@ -67,6 +68,14 @@ mod tests {
             numbers: vec![2, 3],
         };
         assert_eq!(output(Command::Min(args)), "2\n");
+    }
+
+    #[test]
+    fn run_dispatches_product() {
+        let args = commands::product::Args {
+            numbers: vec![2, 3],
+        };
+        assert_eq!(output(Command::Product(args)), "6\n");
     }
 
     #[test]
