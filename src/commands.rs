@@ -6,6 +6,7 @@ pub mod info;
 pub mod max;
 pub mod min;
 pub mod product;
+pub mod range;
 pub mod sum;
 
 #[cfg(test)]
