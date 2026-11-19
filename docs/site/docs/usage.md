@@ -11,6 +11,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`max NUMBERS...`](#max) | the largest of the integers |
 | [`min NUMBERS...`](#min) | the smallest of the integers |
 | [`product [NUMBERS]...`](#product) | the product of the integers |
+| [`range NUMBERS...`](#range) | the largest of the integers less the smallest |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -114,6 +115,32 @@ A product outside the 64-bit signed range is an error:
 ```console
 $ vergil-fixture-rust-app product 9223372036854775807 2
 error: the product overflows a 64-bit signed integer
+```
+
+## range
+
+Prints the spread of its arguments, which are 64-bit signed integers: the
+largest less the smallest. Negative numbers need no `--`.
+
+```console
+$ vergil-fixture-rust-app range 2 9 3
+7
+$ vergil-fixture-rust-app range -4 7
+11
+```
+
+With no arguments there is no spread, so it is an error:
+
+```console
+$ vergil-fixture-rust-app range
+error: range needs at least one number
+```
+
+A spread outside the 64-bit signed range is an error:
+
+```console
+$ vergil-fixture-rust-app range -9223372036854775808 9223372036854775807
+error: the range overflows a 64-bit signed integer
 ```
 
 ## info
