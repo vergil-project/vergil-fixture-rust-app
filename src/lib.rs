@@ -24,6 +24,7 @@ pub fn run(command: Command, out: &mut impl Write) -> anyhow::Result<()> {
         Command::Max(args) => commands::max::run(&args, out),
         Command::Min(args) => commands::min::run(&args, out),
         Command::Product(args) => commands::product::run(&args, out),
+        Command::Range(args) => commands::range::run(&args, out),
         Command::Info => commands::info::run(out),
     }
 }
@@ -76,6 +77,14 @@ mod tests {
             numbers: vec![2, 3],
         };
         assert_eq!(output(Command::Product(args)), "6\n");
+    }
+
+    #[test]
+    fn run_dispatches_range() {
+        let args = commands::range::Args {
+            numbers: vec![2, 3],
+        };
+        assert_eq!(output(Command::Range(args)), "1\n");
     }
 
     #[test]
