@@ -12,6 +12,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`min NUMBERS...`](#min) | the smallest of the integers |
 | [`product [NUMBERS]...`](#product) | the product of the integers |
 | [`range NUMBERS...`](#range) | the largest of the integers less the smallest |
+| [`mean NUMBERS...`](#mean) | the mean of the integers, rounded toward zero |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -141,6 +142,26 @@ A spread outside the 64-bit signed range is an error:
 ```console
 $ vergil-fixture-rust-app range -9223372036854775808 9223372036854775807
 error: the range overflows a 64-bit signed integer
+```
+
+## mean
+
+Prints the mean of its arguments, which are 64-bit signed integers, rounded
+toward zero. Negative numbers need no `--`. The mean lies between the
+smallest and the largest argument, so unlike a sum it never overflows.
+
+```console
+$ vergil-fixture-rust-app mean 2 4 9
+5
+$ vergil-fixture-rust-app mean -1 -2
+-1
+```
+
+With no arguments there is no mean, so it is an error:
+
+```console
+$ vergil-fixture-rust-app mean
+error: mean needs at least one number
 ```
 
 ## info
