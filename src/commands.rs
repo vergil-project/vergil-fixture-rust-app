@@ -4,6 +4,7 @@
 pub mod greet;
 pub mod info;
 pub mod max;
+pub mod mean;
 pub mod min;
 pub mod product;
 pub mod range;
