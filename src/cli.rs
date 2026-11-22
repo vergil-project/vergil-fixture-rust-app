@@ -2,7 +2,7 @@
 
 use clap::{Parser, Subcommand};
 
-use crate::commands::{greet, max, mean, min, product, range, sum};
+use crate::commands::{count, greet, max, mean, min, product, range, sum};
 
 /// The parsed command line.
 #[derive(Debug, Parser)]
@@ -30,6 +30,8 @@ pub enum Command {
     Range(range::Args),
     /// Print the mean of NUMBERS, rounded toward zero (an error when none are given).
     Mean(mean::Args),
+    /// Print how many NUMBERS were given (0 when none are given).
+    Count(count::Args),
     /// Print the program's name and version as JSON.
     Info,
 }
@@ -92,6 +94,12 @@ mod tests {
     fn parses_mean_with_negative_numbers() {
         let command = parse(&["mean", "-4", "2"]);
         assert!(matches!(command, Command::Mean(args) if args.numbers == [-4, 2]));
+    }
+
+    #[test]
+    fn parses_count_with_negative_numbers() {
+        let command = parse(&["count", "-4", "2"]);
+        assert!(matches!(command, Command::Count(args) if args.numbers == [-4, 2]));
     }
 
     #[test]

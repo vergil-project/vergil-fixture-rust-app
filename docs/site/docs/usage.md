@@ -13,6 +13,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`product [NUMBERS]...`](#product) | the product of the integers |
 | [`range NUMBERS...`](#range) | the largest of the integers less the smallest |
 | [`mean NUMBERS...`](#mean) | the mean of the integers, rounded toward zero |
+| [`count [NUMBERS]...`](#count) | how many integers were given |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -162,6 +163,18 @@ With no arguments there is no mean, so it is an error:
 ```console
 $ vergil-fixture-rust-app mean
 error: mean needs at least one number
+```
+
+## count
+
+Prints how many arguments it was given, which are 64-bit signed integers.
+Negative numbers need no `--`, and with no arguments it prints `0`.
+
+```console
+$ vergil-fixture-rust-app count 2 -4 9
+3
+$ vergil-fixture-rust-app count
+0
 ```
 
 ## info
