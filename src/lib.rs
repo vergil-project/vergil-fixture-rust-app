@@ -26,6 +26,7 @@ pub fn run(command: Command, out: &mut impl Write) -> anyhow::Result<()> {
         Command::Product(args) => commands::product::run(&args, out),
         Command::Range(args) => commands::range::run(&args, out),
         Command::Mean(args) => commands::mean::run(&args, out),
+        Command::Count(args) => commands::count::run(&args, out),
         Command::Info => commands::info::run(out),
     }
 }
@@ -94,6 +95,14 @@ mod tests {
             numbers: vec![2, 4],
         };
         assert_eq!(output(Command::Mean(args)), "3\n");
+    }
+
+    #[test]
+    fn run_dispatches_count() {
+        let args = commands::count::Args {
+            numbers: vec![2, 4],
+        };
+        assert_eq!(output(Command::Count(args)), "2\n");
     }
 
     #[test]
