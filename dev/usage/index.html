@@ -515,6 +515,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mean
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -637,6 +648,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mean
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -698,6 +720,10 @@
 <tr>
 <td><a href="#range"><code>range NUMBERS...</code></a></td>
 <td>the largest of the integers less the smallest</td>
+</tr>
+<tr>
+<td><a href="#mean"><code>mean NUMBERS...</code></a></td>
+<td>the mean of the integers, rounded toward zero</td>
 </tr>
 <tr>
 <td><a href="#info"><code>info</code></a></td>
@@ -802,6 +828,19 @@ largest less the smallest. Negative numbers need no <code>--</code>.</p>
 <p>A spread outside the 64-bit signed range is an error:</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>range<span class="w"> </span>-9223372036854775808<span class="w"> </span><span class="m">9223372036854775807</span>
 <span class="go">error: the range overflows a 64-bit signed integer</span>
+</code></pre></div>
+<h2 id="mean">mean<a class="headerlink" href="#mean" title="Permanent link">&para;</a></h2>
+<p>Prints the mean of its arguments, which are 64-bit signed integers, rounded
+toward zero. Negative numbers need no <code>--</code>. The mean lies between the
+smallest and the largest argument, so unlike a sum it never overflows.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>mean<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">9</span>
+<span class="go">5</span>
+<span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>mean<span class="w"> </span>-1<span class="w"> </span>-2
+<span class="go">-1</span>
+</code></pre></div>
+<p>With no arguments there is no mean, so it is an error:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>mean
+<span class="go">error: mean needs at least one number</span>
 </code></pre></div>
 <h2 id="info">info<a class="headerlink" href="#info" title="Permanent link">&para;</a></h2>
 <p>Prints one line of compact JSON with the program's name and version, the
