@@ -165,6 +165,36 @@ fn range_reports_an_overflow() {
 }
 
 #[test]
+fn mean_prints_the_mean() {
+    let output = run(&["mean", "-4", "7", "6"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "3\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn mean_rounds_toward_zero() {
+    let output = run(&["mean", "-1", "-2"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "-1\n");
+}
+
+#[test]
+fn mean_does_not_overflow() {
+    let output = run(&["mean", "9223372036854775807", "9223372036854775807"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "9223372036854775807\n");
+}
+
+#[test]
+fn mean_of_no_numbers_is_an_error() {
+    let output = run(&["mean"]);
+    assert_eq!(output.status.code(), Some(1));
+    assert_eq!(stdout(&output), "");
+    assert_eq!(stderr(&output), "error: mean needs at least one number\n");
+}
+
+#[test]
 fn info_prints_the_name_and_version_as_json() {
     let output = run(&["info"]);
     assert_eq!(output.status.code(), Some(0));
