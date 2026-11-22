@@ -526,6 +526,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -659,6 +670,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -724,6 +746,10 @@
 <tr>
 <td><a href="#mean"><code>mean NUMBERS...</code></a></td>
 <td>the mean of the integers, rounded toward zero</td>
+</tr>
+<tr>
+<td><a href="#count"><code>count [NUMBERS]...</code></a></td>
+<td>how many integers were given</td>
 </tr>
 <tr>
 <td><a href="#info"><code>info</code></a></td>
@@ -841,6 +867,14 @@ smallest and the largest argument, so unlike a sum it never overflows.</p>
 <p>With no arguments there is no mean, so it is an error:</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>mean
 <span class="go">error: mean needs at least one number</span>
+</code></pre></div>
+<h2 id="count">count<a class="headerlink" href="#count" title="Permanent link">&para;</a></h2>
+<p>Prints how many arguments it was given, which are 64-bit signed integers.
+Negative numbers need no <code>--</code>, and with no arguments it prints <code>0</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>count<span class="w"> </span><span class="m">2</span><span class="w"> </span>-4<span class="w"> </span><span class="m">9</span>
+<span class="go">3</span>
+<span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>count
+<span class="go">0</span>
 </code></pre></div>
 <h2 id="info">info<a class="headerlink" href="#info" title="Permanent link">&para;</a></h2>
 <p>Prints one line of compact JSON with the program's name and version, the
