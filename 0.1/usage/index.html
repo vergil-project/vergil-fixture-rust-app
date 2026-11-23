@@ -548,6 +548,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#distinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        distinct
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -703,6 +714,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#distinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        distinct
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#info" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -776,6 +798,10 @@
 <tr>
 <td><a href="#median"><code>median NUMBERS...</code></a></td>
 <td>the median of the integers, rounded toward zero</td>
+</tr>
+<tr>
+<td><a href="#distinct"><code>distinct [NUMBERS]...</code></a></td>
+<td>how many different integers were given</td>
 </tr>
 <tr>
 <td><a href="#info"><code>info</code></a></td>
@@ -915,6 +941,15 @@ median never overflows.</p>
 <p>With no arguments there is no median, so it is an error:</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>median
 <span class="go">error: median needs at least one number</span>
+</code></pre></div>
+<h2 id="distinct">distinct<a class="headerlink" href="#distinct" title="Permanent link">&para;</a></h2>
+<p>Prints how many different integers it was given, which are 64-bit signed
+integers, counting a repeated value once. Negative numbers need no <code>--</code>, and
+with no arguments it prints <code>0</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>distinct<span class="w"> </span><span class="m">2</span><span class="w"> </span>-4<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">9</span>
+<span class="go">3</span>
+<span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>distinct
+<span class="go">0</span>
 </code></pre></div>
 <h2 id="info">info<a class="headerlink" href="#info" title="Permanent link">&para;</a></h2>
 <p>Prints one line of compact JSON with the program's name and version, the
