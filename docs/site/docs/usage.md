@@ -14,6 +14,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`range NUMBERS...`](#range) | the largest of the integers less the smallest |
 | [`mean NUMBERS...`](#mean) | the mean of the integers, rounded toward zero |
 | [`count [NUMBERS]...`](#count) | how many integers were given |
+| [`median NUMBERS...`](#median) | the median of the integers, rounded toward zero |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -175,6 +176,27 @@ $ vergil-fixture-rust-app count 2 -4 9
 3
 $ vergil-fixture-rust-app count
 0
+```
+
+## median
+
+Prints the median of its arguments, which are 64-bit signed integers: the
+middle one once they are sorted, or, for an even count, the mean of the two
+middle ones, rounded toward zero. Negative numbers need no `--`, and the
+median never overflows.
+
+```console
+$ vergil-fixture-rust-app median 9 -4 2
+2
+$ vergil-fixture-rust-app median 8 -4 2 5
+3
+```
+
+With no arguments there is no median, so it is an error:
+
+```console
+$ vergil-fixture-rust-app median
+error: median needs at least one number
 ```
 
 ## info

@@ -23,7 +23,7 @@ adds one small increment.
 
 ## Overview
 
-The program, `vergil-fixture-rust-app`, has nine subcommands:
+The program, `vergil-fixture-rust-app`, has ten subcommands:
 
 | Command | Prints |
 |---|---|
@@ -35,6 +35,7 @@ The program, `vergil-fixture-rust-app`, has nine subcommands:
 | `range NUMBERS...` | the largest of the integers less the smallest, an error for none |
 | `mean NUMBERS...` | the mean of the integers, rounded toward zero, an error for none |
 | `count [NUMBERS]...` | how many integers were given, `0` for none |
+| `median NUMBERS...` | the median of the integers, rounded toward zero, an error for none |
 | `info` | the program's name and version as JSON |
 
 It exercises:

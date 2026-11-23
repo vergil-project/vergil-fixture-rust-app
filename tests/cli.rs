@@ -211,6 +211,30 @@ fn count_of_no_numbers_is_zero() {
 }
 
 #[test]
+fn median_prints_the_middle_number() {
+    let output = run(&["median", "9", "-4", "2"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "2\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn median_of_an_even_count_averages_the_middle_two() {
+    let output = run(&["median", "8", "-4", "2", "5"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "3\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn median_of_no_numbers_is_an_error() {
+    let output = run(&["median"]);
+    assert_eq!(output.status.code(), Some(1));
+    assert_eq!(stdout(&output), "");
+    assert_eq!(stderr(&output), "error: median needs at least one number\n");
+}
+
+#[test]
 fn info_prints_the_name_and_version_as_json() {
     let output = run(&["info"]);
     assert_eq!(output.status.code(), Some(0));
