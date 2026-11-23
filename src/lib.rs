@@ -28,6 +28,7 @@ pub fn run(command: Command, out: &mut impl Write) -> anyhow::Result<()> {
         Command::Mean(args) => commands::mean::run(&args, out),
         Command::Count(args) => commands::count::run(&args, out),
         Command::Median(args) => commands::median::run(&args, out),
+        Command::Distinct(args) => commands::distinct::run(&args, out),
         Command::Info => commands::info::run(out),
     }
 }
@@ -112,6 +113,14 @@ mod tests {
             numbers: vec![9, 2, 4],
         };
         assert_eq!(output(Command::Median(args)), "4\n");
+    }
+
+    #[test]
+    fn run_dispatches_distinct() {
+        let args = commands::distinct::Args {
+            numbers: vec![2, 4, 2],
+        };
+        assert_eq!(output(Command::Distinct(args)), "2\n");
     }
 
     #[test]

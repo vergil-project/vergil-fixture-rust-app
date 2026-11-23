@@ -235,6 +235,22 @@ fn median_of_no_numbers_is_an_error() {
 }
 
 #[test]
+fn distinct_prints_how_many_different_numbers() {
+    let output = run(&["distinct", "-4", "7", "-4"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "2\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn distinct_of_no_numbers_is_zero() {
+    let output = run(&["distinct"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "0\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
 fn info_prints_the_name_and_version_as_json() {
     let output = run(&["info"]);
     assert_eq!(output.status.code(), Some(0));
