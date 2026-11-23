@@ -15,6 +15,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`mean NUMBERS...`](#mean) | the mean of the integers, rounded toward zero |
 | [`count [NUMBERS]...`](#count) | how many integers were given |
 | [`median NUMBERS...`](#median) | the median of the integers, rounded toward zero |
+| [`distinct [NUMBERS]...`](#distinct) | how many different integers were given |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -197,6 +198,19 @@ With no arguments there is no median, so it is an error:
 ```console
 $ vergil-fixture-rust-app median
 error: median needs at least one number
+```
+
+## distinct
+
+Prints how many different integers it was given, which are 64-bit signed
+integers, counting a repeated value once. Negative numbers need no `--`, and
+with no arguments it prints `0`.
+
+```console
+$ vergil-fixture-rust-app distinct 2 -4 2 9
+3
+$ vergil-fixture-rust-app distinct
+0
 ```
 
 ## info

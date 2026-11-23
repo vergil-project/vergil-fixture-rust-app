@@ -2,6 +2,7 @@
 //! plain function, and a `run` that writes the result.
 
 pub mod count;
+pub mod distinct;
 pub mod greet;
 pub mod info;
 pub mod max;
