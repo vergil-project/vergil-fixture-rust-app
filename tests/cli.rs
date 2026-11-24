@@ -251,6 +251,22 @@ fn distinct_of_no_numbers_is_zero() {
 }
 
 #[test]
+fn mode_prints_the_most_common_number() {
+    let output = run(&["mode", "-4", "7", "-4"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "-4\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn mode_of_no_numbers_is_an_error() {
+    let output = run(&["mode"]);
+    assert_eq!(output.status.code(), Some(1));
+    assert_eq!(stdout(&output), "");
+    assert_eq!(stderr(&output), "error: mode needs at least one number\n");
+}
+
+#[test]
 fn info_prints_the_name_and_version_as_json() {
     let output = run(&["info"]);
     assert_eq!(output.status.code(), Some(0));

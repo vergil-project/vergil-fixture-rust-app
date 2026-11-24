@@ -2,7 +2,7 @@
 
 use clap::{Parser, Subcommand};
 
-use crate::commands::{count, distinct, greet, max, mean, median, min, product, range, sum};
+use crate::commands::{count, distinct, greet, max, mean, median, min, mode, product, range, sum};
 
 /// The parsed command line.
 #[derive(Debug, Parser)]
@@ -36,6 +36,8 @@ pub enum Command {
     Median(median::Args),
     /// Print how many different NUMBERS were given (0 when none are given).
     Distinct(distinct::Args),
+    /// Print the most common of NUMBERS, the smallest on a tie (an error when none are given).
+    Mode(mode::Args),
     /// Print the program's name and version as JSON.
     Info,
 }
@@ -116,6 +118,12 @@ mod tests {
     fn parses_distinct_with_negative_numbers() {
         let command = parse(&["distinct", "-4", "2"]);
         assert!(matches!(command, Command::Distinct(args) if args.numbers == [-4, 2]));
+    }
+
+    #[test]
+    fn parses_mode_with_negative_numbers() {
+        let command = parse(&["mode", "-4", "2"]);
+        assert!(matches!(command, Command::Mode(args) if args.numbers == [-4, 2]));
     }
 
     #[test]
