@@ -16,6 +16,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`count [NUMBERS]...`](#count) | how many integers were given |
 | [`median NUMBERS...`](#median) | the median of the integers, rounded toward zero |
 | [`distinct [NUMBERS]...`](#distinct) | how many different integers were given |
+| [`mode NUMBERS...`](#mode) | the most common of the integers, the smallest on a tie |
 | [`info`](#info) | the program's name and version as JSON |
 
 `--help` prints the commands, and `--version` prints the program's name and
@@ -211,6 +212,26 @@ $ vergil-fixture-rust-app distinct 2 -4 2 9
 3
 $ vergil-fixture-rust-app distinct
 0
+```
+
+## mode
+
+Prints the integer it was given most often, of 64-bit signed integers. When
+several are given equally often, it prints the smallest of them. Negative
+numbers need no `--`.
+
+```console
+$ vergil-fixture-rust-app mode 2 -4 9 -4
+-4
+$ vergil-fixture-rust-app mode 9 2 9 2
+2
+```
+
+With no arguments it is an error:
+
+```console
+$ vergil-fixture-rust-app mode
+error: mode needs at least one number
 ```
 
 ## info

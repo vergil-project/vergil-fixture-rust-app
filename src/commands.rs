@@ -9,6 +9,7 @@ pub mod max;
 pub mod mean;
 pub mod median;
 pub mod min;
+pub mod mode;
 pub mod product;
 pub mod range;
 pub mod sum;
