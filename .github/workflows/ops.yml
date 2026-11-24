@@ -16,3 +16,15 @@ jobs:
       contents: read
       issues: write
     secrets: inherit
+
+  # The daily agent audit (epic vergil-project/.github#1384). It runs after
+  # the config job but also when that job fails, so a config failure never
+  # skips the audit. It has no reporting job: a security signal never goes
+  # to a public ops issue.
+  agent-audit:
+    needs: github-config
+    if: ${{ !cancelled() }}
+    uses: vergil-project/vergil-actions/.github/workflows/ops-agent-audit.yml@v2.1
+    permissions:
+      contents: read
+    secrets: inherit
