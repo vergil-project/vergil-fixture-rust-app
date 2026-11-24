@@ -86,7 +86,10 @@ mod tests {
 
     #[test]
     fn handles_the_bounds() {
-        assert_eq!(most_common(&[i64::MAX, i64::MIN, i64::MAX]).unwrap(), i64::MAX);
+        assert_eq!(
+            most_common(&[i64::MAX, i64::MIN, i64::MAX]).unwrap(),
+            i64::MAX
+        );
         assert_eq!(most_common(&[i64::MAX, i64::MIN]).unwrap(), i64::MIN);
     }
 
