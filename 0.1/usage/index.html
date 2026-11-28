@@ -559,6 +559,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#evens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        evens
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -736,6 +747,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#evens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        evens
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -824,6 +846,10 @@
 <tr>
 <td><a href="#distinct"><code>distinct [NUMBERS]...</code></a></td>
 <td>how many different integers were given</td>
+</tr>
+<tr>
+<td><a href="#evens"><code>evens [NUMBERS]...</code></a></td>
+<td>how many of the integers are even</td>
 </tr>
 <tr>
 <td><a href="#mode"><code>mode NUMBERS...</code></a></td>
@@ -975,6 +1001,15 @@ with no arguments it prints <code>0</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>distinct<span class="w"> </span><span class="m">2</span><span class="w"> </span>-4<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">9</span>
 <span class="go">3</span>
 <span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>distinct
+<span class="go">0</span>
+</code></pre></div>
+<h2 id="evens">evens<a class="headerlink" href="#evens" title="Permanent link">&para;</a></h2>
+<p>Prints how many of the integers it was given are even, which are 64-bit
+signed integers. Negative numbers need no <code>--</code>, so <code>-4</code> is even, and with no
+arguments it prints <code>0</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>evens<span class="w"> </span><span class="m">2</span><span class="w"> </span>-4<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">9</span>
+<span class="go">2</span>
+<span class="gp">$ </span>vergil-fixture-rust-app<span class="w"> </span>evens
 <span class="go">0</span>
 </code></pre></div>
 <h2 id="mode">mode<a class="headerlink" href="#mode" title="Permanent link">&para;</a></h2>
