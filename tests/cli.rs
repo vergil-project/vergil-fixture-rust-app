@@ -251,6 +251,22 @@ fn distinct_of_no_numbers_is_zero() {
 }
 
 #[test]
+fn evens_prints_how_many_are_even() {
+    let output = run(&["evens", "-4", "7", "2"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "2\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
+fn evens_of_no_numbers_is_zero() {
+    let output = run(&["evens"]);
+    assert_eq!(output.status.code(), Some(0));
+    assert_eq!(stdout(&output), "0\n");
+    assert_eq!(stderr(&output), "");
+}
+
+#[test]
 fn mode_prints_the_most_common_number() {
     let output = run(&["mode", "-4", "7", "-4"]);
     assert_eq!(output.status.code(), Some(0));
