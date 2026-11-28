@@ -16,6 +16,7 @@ vergil-fixture-rust-app <COMMAND>
 | [`count [NUMBERS]...`](#count) | how many integers were given |
 | [`median NUMBERS...`](#median) | the median of the integers, rounded toward zero |
 | [`distinct [NUMBERS]...`](#distinct) | how many different integers were given |
+| [`evens [NUMBERS]...`](#evens) | how many of the integers are even |
 | [`mode NUMBERS...`](#mode) | the most common of the integers, the smallest on a tie |
 | [`info`](#info) | the program's name and version as JSON |
 
@@ -211,6 +212,19 @@ with no arguments it prints `0`.
 $ vergil-fixture-rust-app distinct 2 -4 2 9
 3
 $ vergil-fixture-rust-app distinct
+0
+```
+
+## evens
+
+Prints how many of the integers it was given are even, which are 64-bit
+signed integers. Negative numbers need no `--`, so `-4` is even, and with no
+arguments it prints `0`.
+
+```console
+$ vergil-fixture-rust-app evens 2 -4 7 9
+2
+$ vergil-fixture-rust-app evens
 0
 ```
 
