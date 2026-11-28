@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.9] - 2026-11-28
+
+### Chores
+
+- cargo update
+- sync the managed files with the released templates (#106)
+- sync the managed files with the released templates (#107)
+
+### Features
+
+- add the evens subcommand and roll memchr back in the lockfile (#108)
+
 ## [0.1.8] - 2026-11-24
 
 ### CI
