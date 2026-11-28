@@ -29,6 +29,7 @@ pub fn run(command: Command, out: &mut impl Write) -> anyhow::Result<()> {
         Command::Count(args) => commands::count::run(&args, out),
         Command::Median(args) => commands::median::run(&args, out),
         Command::Distinct(args) => commands::distinct::run(&args, out),
+        Command::Evens(args) => commands::evens::run(&args, out),
         Command::Mode(args) => commands::mode::run(&args, out),
         Command::Info => commands::info::run(out),
     }
@@ -122,6 +123,14 @@ mod tests {
             numbers: vec![2, 4, 2],
         };
         assert_eq!(output(Command::Distinct(args)), "2\n");
+    }
+
+    #[test]
+    fn run_dispatches_evens() {
+        let args = commands::evens::Args {
+            numbers: vec![2, 4, 3],
+        };
+        assert_eq!(output(Command::Evens(args)), "2\n");
     }
 
     #[test]
