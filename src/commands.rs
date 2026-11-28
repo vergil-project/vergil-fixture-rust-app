@@ -3,6 +3,7 @@
 
 pub mod count;
 pub mod distinct;
+pub mod evens;
 pub mod greet;
 pub mod info;
 pub mod max;
